@@ -1,0 +1,95 @@
+<MDCard>
+    size_hint_y: None
+    height: "180dp"
+    width: "220dp"
+    padding: "8dp"
+    
+
+MDScreen:
+    name: "movies_list"
+    ScrollView:
+        size_hint_y:None
+        height: root.height - toolbar.height
+        MDList:
+            GridLayout:
+                cols: 1
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(8)
+
+                MDCard:
+                    GridLayout:
+                        cols:2
+                        Image:
+                            source:"./icons/bg.png"
+                        GridLayout:
+                            cols:1
+                            MDLabel:
+                                text: "Titanic (1998)"
+                                theme_text_color: "Primary"
+                                size_hint_y: 1
+                                height: self.texture_size[1]
+                            MDLabel:
+                                text: "Titanic is a very good movie and I recommend whatching it"
+                                theme_text_color: "Secondary"
+                            GridLayout:
+                                cols:2
+                                padding: dp(4), dp(4)
+                                spacing:dp(8)
+                                MDTextButton:
+                                    text: "Add"
+                                    on_release : app.shahryar.change_screen("home")
+                                MDTextButton:
+                                    text: "Return"
+                                    on_release : app.shahryar.change_screen("home")
+                               
+                                    
+                                    
+                    
+                MDCard:
+                    
+                    GridLayout:
+                        cols:2
+                        Image:
+                            source:"./icons/bg.png"
+                        GridLayout:
+                            cols:1
+                            MDLabel:
+                                text: "Titanic (1998)"
+                                theme_text_color: "Primary"
+                                size_hint_y: 1
+                                height: self.texture_size[1]
+                            MDLabel:
+                                text: "Titanic is a very good movie and I recommend whatching it"
+                                theme_text_color: "Secondary"
+                            GridLayout:
+                                cols:2
+                                padding: dp(4), dp(4)
+                                MDTextButton:
+                                    text: "Add"
+                                    on_release : app.shahryar.change_screen("home")
+    MDToolbar:
+        id: toolbar
+        title:"beer"
+        radius: [15,15,15,15]
+        anchor_title: "center"
+        md_bg_color : app.theme_cls.primary_color
+        elevation:10
+        pos_hint: {"top":1}  
+        left_action_items: [["arrow-left", lambda x: app.shahryar.change_screen("home")]]
+
+        MDTextFieldRound:
+            id: movie_title
+            hint_text : 'search'
+            max_text_length: 10
+            icon_left : 'magnify'
+            size_x: 0.6
+            size_y: 2
+            pos_hint: {'x': 0.15, 'center_y' : 0.725}
+            color_mode : 'custom'
+            normal_color : (1, 1, 1, 1)
+            active_color : (1, 1, 1, 1)
+            on_text_validate: print("hello")   
+
+        
+                   

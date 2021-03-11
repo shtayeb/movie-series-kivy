@@ -1,0 +1,38 @@
+#:include ./ui/MyMDCard.kv
+#:kivy 2.0.0
+#:import Animation kivy.animation.Animation
+
+MDScreen:
+    name: "series_list"
+    ScrollView:
+        size_hint_y:None
+        height: root.height - toolbar.height
+        MDList:
+            id : serieslist_dynamic
+    MDToolbar:
+        id: toolbar
+        title:"Series You Watched"
+        radius: [15,15,15,15]
+        anchor_title: "center"
+        md_bg_color : app.theme_cls.primary_color
+        elevation:10
+        pos_hint: {"top":1}  
+        left_action_items: [["arrow-left", lambda x: app.shahryar.change_screen("home")]]
+        right_action_items: [["magnify", lambda x: print("hello")]]
+
+        # MDTextFieldRound:
+        #     id: movie_title
+        #     hint_text : 'search'
+        #     max_text_length: 10
+        #     icon_left : 'magnify'
+        #     size_x: 0.6
+        #     size_y: 2
+        #     pos_hint: {'x': 0.15, 'center_y' : 0.725}
+        #     color_mode : 'custom'
+        #     normal_color : (1, 1, 1, 1)
+        #     active_color : (1, 1, 1, 1)
+        
+            
+
+        
+                   

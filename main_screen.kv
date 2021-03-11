@@ -1,0 +1,621 @@
+
+<RectangularElevationButton>:
+	size_hint: (0.44, 0.09)
+	elevation : 8
+	md_bg_color : (1, 1, 1, 1)
+	text_color : rgba('#9370DB')
+
+<TodayScreenElevationButton>:
+	#size_hint : (0.4, 0.25)
+	width: dp(100)
+	height : dp(100)
+	elevation : 10
+	md_bg_color : (1, 1, 1, 1)
+	text_color : rgba('#FFC7B8F5')
+
+<RectangularElevationListItem>:
+	md_bg_color : (1, 1, 1, 1)
+	size_hint: (0.9, None)
+	elevation : 8
+
+
+	
+MDScreen:
+
+	id: home
+	name :"home"
+	
+	add_movie_title : add_movie_title
+	add_movie_director :    add_movie_director 
+	add_movie_rating  : add_movie_rating
+	add_movie_review: add_movie_review
+	add_movie_genre:add_movie_genre
+		
+	add_series_title : add_series_title
+	add_series_showrunner : add_series_showrunner
+	add_series_rating : add_series_rating
+	add_series_genre : add_series_genre
+	add_series_review : add_series_review
+
+	add_series_date : add_series_date
+	add_movie_date: add_movie_date
+
+	title : movie_title
+
+	
+    
+	FloatLayout:
+		MDBottomNavigation:
+
+			# Today Screen.
+
+			MDBottomNavigationItem:
+				name : 'today'
+				text : 'Home'
+				icon : 'calendar-month-outline'
+				canvas:
+					Color:
+						rgba : rgba('#FFC7B8F5')
+						#rgba : rgba('#000000')
+					RoundedRectangle:
+						size : self.size
+						pos : self.pos
+					
+					Color:
+						rgba : (1, 1, 1, 1)
+						#rgba : (0, 0, 0, 1)
+					RoundedRectangle:
+						size : self.size[0], self.size[1] - 0.45*self.size[1]
+						
+				Image :
+					source: 'icons/undraw_pilates_gpdb.png'
+					size_hint: (0.9, 0.8)
+					pos_hint : {'center_x' : 0.3, 'center_y' : 0.78}
+				MDLabel:
+					id: welcome_message
+					text : 'Welcome [User]'
+					font_style : 'H6'
+					pos_hint : {'x' : 0.06, 'center_y' : 0.855}
+					size_hint: (0.55, None)
+					theme_text_color: "Custom"
+    				text_color: 0, 0, 0, 1
+					#font_style: "Subtitle2"
+				MDIconButton:
+					icon : 'menu'
+					size_hint: (None, None)
+					pos : root.width - 1.5*self.width, root.height - 2.2*self.height
+					on_release: app.shahryar.change_screen("login")
+				
+				MDTextFieldRound:
+					id: movie_title
+					hint_text : 'search'
+					max_text_length: 10
+					icon_left : 'magnify'
+					size_hint: (0.7, 0.06)
+					pos_hint: {'x': 0.15, 'center_y' : 0.725}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					on_text_validate: app.shahryar.handleSearch()
+
+					
+						
+				
+				# first button
+				
+				TodayScreenElevationButton:
+					pos_hint : {'center_x' : 0.25, 'center_y' : 0.515}
+					on_release: app.shahryar.handleMovies()
+					
+				Image:
+					source: 'icons/muscle.png'
+					size_hint: (0.18, 0.18)
+					pos_hint: {'center_x' : 0.25, 'center_y' : 0.56}
+				MDLabel:
+					text : 'Watched Movies'
+					font_size: '9sp'
+					size_hint: (0.22, None)
+					pos_hint: {'x' : 0.172, 'center_y' : 0.46}
+					theme_text_color: "Custom"
+    				text_color: 0, 0, 0, 1
+					#font_style: "Subtitle2"
+					
+				
+				# Second button
+				
+				TodayScreenElevationButton:
+					pos_hint : {'center_x' : 0.75, 'center_y' : 0.515}
+					on_release: app.shahryar.handleSeries()
+				Image:
+					source: 'icons/fitness.png'
+					size_hint: (0.2, 0.2)
+					pos_hint: {'center_x' : 0.75, 'center_y' : 0.55}
+				MDLabel:
+					text : 'Watched Series'
+					font_size: '9sp'
+					size_hint: (0.22, None)
+					pos_hint: {'x' : 0.69, 'center_y' : 0.46}
+					theme_text_color: "Custom"
+    				text_color: 0, 0, 0, 1
+					#font_style: "Subtitle2"
+				
+				# Third button
+				
+				TodayScreenElevationButton:
+					pos_hint : {'center_x' : 0.25, 'center_y' : 0.24}
+				Image:
+					source: 'icons/lotus.png'
+					size_hint: (0.2, 0.2)
+					pos_hint: {'center_x' : 0.25, 'center_y' : 0.28}
+				MDLabel:
+					text : 'Latest News'
+					font_size: '9sp'
+					size_hint: (0.22, None)
+					pos_hint: {'x' : 0.19, 'center_y' : 0.20}
+					theme_text_color: "Custom"
+    				text_color: 0, 0, 0, 1
+					#font_style: "Subtitle2"
+				
+				# Fourth button
+				
+				TodayScreenElevationButton:
+					pos_hint : {'center_x' : 0.75, 'center_y' : 0.24}
+					on_release: app.shahryar.salert()
+				Image:
+					source: 'icons/pose.png'
+					size_hint: (0.2, 0.2)
+					pos_hint: {'center_x' : 0.75, 'center_y' : 0.278}
+				MDLabel:
+					text : 'Your Posts'
+					font_size: '9sp'
+					size_hint: (0.26, None)
+					pos_hint: {'x' : 0.70, 'center_y' : 0.20}
+					theme_text_color: "Custom"
+    				text_color: 0, 0, 0, 1
+					#font_style: "Subtitle2"
+
+
+
+
+	#edited by shahryar
+			MDBottomNavigationItem:
+				name : 'add movie'
+				text : 'Add Movie'
+				font_size: '4sp'
+				icon : 'movie-edit'
+				canvas:
+					Color:
+						rgba : rgba('#c2c3dc')
+					RoundedRectangle:
+						size : self.size
+						pos : self.pos
+					Color:
+						rgba : (1, 1, 1, 1)
+						#rgba : (0, 0, 0, 1)
+					RoundedRectangle:
+						size : self.size[0], self.size[1] - 0.25*self.size[1]
+						pos : self.pos
+
+
+	#textboxes and labels for the add movie tab
+				Image :
+					source: 'icons/undraw_pilates_gpdb.png'
+					size_hint: (0.9, 0.8)
+					pos_hint : {'center_x' : 0.3, 'center_y' : 0.78}
+
+				MDLabel:
+					text : 'Add a Movie'
+					font_style : 'H4'
+					pos_hint: {'x': 0.06, 'center_y' : 0.9}
+
+
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_movie_title
+					hint_text : 'Add Your Title Here '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.8}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+				
+				
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_movie_director
+					hint_text : "Add Director's Name "
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.715}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_movie_date
+					hint_text : 'Date Of Release '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.625}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					on_double_tap: app.shahryar.show_date_picker("movie")
+					
+
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_movie_rating
+					hint_text : 'Your Rating '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.532}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+
+				MDTextField:
+					mode: "rectangle"
+					id: add_movie_genre
+					hint_text : 'Movie Genre '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.435}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					on_double_tap:app.shahryar.show_genre_list_bottom_sheet("movie")
+					
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_movie_review
+					hint_text : 'Your Review '
+					multiline: "true"
+					max_text_length: 200
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.2)
+					pos_hint: {'x': 0.14, 'center_y' : 0.255}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+
+			#button in the add movie tab
+				MDFloatingActionButton:
+					icon: "beaker-plus"
+					md_bg_color: app.theme_cls.primary_color
+					pos_hint: {'center_x': 0.8, 'center_y': 0.08}
+					on_release: app.shahryar.showDialog("movie")
+				
+				MDTextButton:
+					text: "Clear All"
+					pos_hint: {'x': 0.11, 'center_y' : 0.12}
+					on_release: app.shahryar.clear_all("movie")
+
+					
+
+
+
+
+			# Exercise Screen.
+			MDBottomNavigationItem:
+				name : 'add series'
+				text : 'Add Series'
+				font_size: '4sp'
+				icon : 'television-classic'
+				canvas:
+					Color:
+						rgba : rgba('#c2c3dc')
+					RoundedRectangle:
+						size : self.size
+						pos : self.pos
+					Color:
+						rgba : (1, 1, 1, 1)
+					RoundedRectangle:
+						size : self.size[0], self.size[1] - 0.25*self.size[1]
+						pos : self.pos
+				MDLabel:
+					text : 'Add a Series'
+					font_style : 'H4'
+					pos_hint: {'x': 0.06, 'center_y' : 0.9}
+
+
+		#My texfields and buttons for add series tab
+
+
+	
+				Image :
+					source: 'icons/undraw_pilates_gpdb.png'
+					size_hint: (0.9, 0.8)
+					pos_hint : {'center_x' : 0.3, 'center_y' : 0.78}
+			
+				MDTextField:
+					mode: "rectangle"
+					id: add_series_title
+					hint_text : 'Your Title Here '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.8}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+				
+				
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_series_showrunner
+					hint_text : "Show Runner's Name "
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.715}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_series_date
+					hint_text : 'Date Of Release '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.625}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					on_double_tap: app.shahryar.show_date_picker("series")
+					
+					
+
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_series_rating
+					hint_text : 'Your Rating '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.532}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					on_double_tap: app.shahryar.Rating()
+					
+
+				MDTextField:
+					mode: "rectangle"
+					id: add_series_genre
+					hint_text : 'Genre '
+					max_text_length: 60
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.435}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					on_double_tap:app.shahryar.show_genre_list_bottom_sheet("series")
+					
+				
+				MDTextField:
+					mode: "rectangle"
+					id: add_series_review
+					hint_text : 'Your Review '
+					multiline: "true"
+					max_text_length: 200
+					#icon_left : 'magnify'
+					size_hint: (0.7, 0.2)
+					pos_hint: {'x': 0.14, 'center_y' : 0.255}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+
+			#button in the add movie tab
+				MDFloatingActionButton:
+					id: add_series_fbutton
+					icon: "beaker-plus"
+					md_bg_color: app.theme_cls.primary_color
+					pos_hint: {'center_x': 0.8, 'center_y': 0.08}
+					on_release: app.shahryar.showDialog("series")
+				
+				MDTextButton:
+					text: "Clear All"
+					pos_hint: {'x': 0.11, 'center_y' : 0.12}
+					on_release: app.shahryar.clear_all("series")
+
+
+
+
+
+
+
+
+
+
+
+
+				
+				
+
+			# This screen is empty for now.
+
+			MDBottomNavigationItem:
+				name : 'settings'
+				text : 'Account'
+				icon : 'account-circle'
+				canvas:
+					Color:
+						rgba : rgba('#c2c3dc')
+					RoundedRectangle:
+						size : self.size
+						pos : self.pos
+					Color:
+						rgba : (1, 1, 1, 1)
+					RoundedRectangle:
+						size : self.size[0], self.size[1] - 0.2*self.size[1]
+						pos : self.pos
+			
+
+				MDLabel:
+					text : 'My Profile'
+					font_style : 'H4'
+					pos_hint: {'x': 0.06, 'center_y' : 0.945}
+
+				MDLabel:
+					text : 'Watched Movies'
+					font_style : 'Subtitle2'
+					pos_hint: {'x': 0.08, 'center_y' : 0.855}
+
+				MDLabel:
+					text : "10"
+					font_style : 'Subtitle2'
+					pos_hint: {'x': 0.18, 'center_y' : 0.83}
+
+				MDLabel:
+					text : 'Watched Series'
+					font_style : 'Subtitle2'
+					pos_hint: {'x': 0.44, 'center_y' : 0.855}
+
+				MDLabel:
+					text : "3"
+					font_style : 'Subtitle2'
+					pos_hint: {'x': 0.54, 'center_y' : 0.83}
+
+
+				MDLabel:
+					text : 'Total'
+					font_style : 'Subtitle2'
+					pos_hint: {'x': 0.8, 'center_y' : 0.855}
+
+				MDLabel:
+					text : "2"
+					font_style : 'Subtitle2'
+					pos_hint: {'x': 0.82, 'center_y' : 0.83}
+
+
+
+				MDTextField:
+					mode: "rectangle"
+					id: act_username
+					hint_text : 'Edit Your UserName '
+					text: "Shahryar"
+					max_text_length: 20
+					icon_right : 'account'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.7}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+				
+				
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: act_fullname
+					hint_text : "Edit Your Name "
+					text: "Shahryar Tayeb"
+					max_text_length: 20
+					icon_right : 'account-box'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.615}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: act_email
+					hint_text : 'Edit Your Email '
+					text: "Shahryar.Tayeb@gmail.com"
+					max_text_length: 30
+					icon_right : 'email'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.525}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				
+				MDFillRoundFlatButton:
+					text: "Apply Changes"
+    				md_bg_color: 0, 0, 1, 0.3
+					pos_hint: {'x': 0.45, 'center_y' : 0.425}
+
+					
+
+				
+				
+				MDTextField:
+					mode: "rectangle"
+					id: act_password
+					password: True
+					hint_text : 'Your Password '
+					text: "Shahryar"
+					max_text_length: 20
+					icon_right : 'account-cowbay-hat'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.332}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+
+				MDTextField:
+					mode: "rectangle"
+					password: True
+					id: act_password_1
+					hint_text : 'Confirm Password '
+					text: "Shahryar"
+					max_text_length: 20
+					icon_right : 'account-cowbay-hat'
+					size_hint: (0.7, 0.08)
+					pos_hint: {'x': 0.14, 'center_y' : 0.232}
+					color_mode : 'custom'
+					normal_color : (1, 1, 1, 1)
+					active_color : (1, 1, 1, 1)
+					
+				MDFillRoundFlatButton:
+					text: "Change Password"
+    				md_bg_color: 0, 0, 1, 0.3
+					pos_hint: {'x': 0.45, 'center_y' : 0.132}
+				
+				
+					
+
+					
+			

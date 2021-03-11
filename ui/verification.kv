@@ -1,0 +1,65 @@
+#:kivy 2.0.0
+
+MDScreen:
+    name: "verification"
+
+    blur: 0
+
+    EffectWidget:
+        effects: (HorizontalBlurEffect(size=root.blur), VerticalBlurEffect(size=root.blur), )
+        Image:
+            pos: root.pos
+            size: root.width * 0.5, root.height
+            source: "./icons/bg.png"
+            allow_stretch: True
+            keep_ratio: False
+            
+    MDLabel:
+        text: "Shahryar"
+        halign: "center"
+        pos_hint: {"center_y": .8}
+        font_style: "H3"
+    
+    MDLabel:
+        text: "Account verification"
+        halign: "center"
+        pos_hint: {"center_y":.73}
+        font_style: "Subtitle2"
+    
+    MDLabel:
+        text: "We've sent a verification code to your email."
+        halign: "center"
+        pos_hint: {"center_y":.67}
+        font_style: "Body2"
+        
+    MDTextField:
+        hint_text: "Enter your verification Code"
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        size_hint: .75,0.08
+        max_text_length: 6
+        # mode: "rectangle"
+
+    MDRaisedButton:
+        text: "Submit"
+        pos_hint: {"center_x": 0.5, "center_y":0.52}
+        size_hint: .7,0.05
+    
+    MDTextButton:
+        text: "Resend code"
+        pos_hint: {"center_x": 0.5, "center_y":0.45}
+        on_release: app.shahryar.change_screen("verification")
+
+    MDLabel:
+        text: "Never share your verification code to anyone."
+        halign: "center"
+        pos_hint: {"center_y":.4}
+        font_style: "Caption"
+
+    MDLabel:
+        text: f"[font=Icons] {md_icons['copyright']}[/font]  [font=Roboto]Shahryar 2020[/font]"
+        markup: True
+        halign: "center"
+        pos_hint: {"center_y":0.05}
+        
+        
+        
